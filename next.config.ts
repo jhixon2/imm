@@ -1,6 +1,8 @@
 const nextConfig = {
   reactStrictMode: true,
-  // any other Next.js config options here
+  turbopack: {
+    root: __dirname,
+  },
 };
 
 export default nextConfig;

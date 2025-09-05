@@ -1,9 +1,8 @@
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import './globals.css';
 
 export const metadata = {
-  title: "IMM site",
-  description: "Website description here",
+  title: 'My Friend Site',
+  description: 'Website powered by Next.js + Sanity',
 };
 
 export default function RootLayout({
