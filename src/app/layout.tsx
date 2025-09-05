@@ -1,8 +1,8 @@
 import './globals.css';
 
 export const metadata = {
-  title: 'My Friend Site',
-  description: 'Website powered by Next.js + Sanity',
+  title: 'Isabel Monika Marchand',
+  description: 'IMM Portfolio',
 };
 
 export default function RootLayout({
