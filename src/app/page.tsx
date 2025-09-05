@@ -1,5 +1,4 @@
 import { client } from '../../lib/sanity';
-import './globals.css';
 
 type HomepageData = {
   title?: string;
@@ -17,12 +16,10 @@ export default async function Page() {
   );
 
   return (
-    <main className="p-8 max-w-3xl mx-auto">
-      <h1 className="text-4xl font-bold mb-4">{data?.title || 'Title goes here'}</h1>
-      {data?.heroImageUrl && (
-        <img src={data.heroImageUrl} alt="Hero" className="w-full h-auto rounded-md mb-6" />
-      )}
-      <p className="text-lg">{data?.aboutText || 'About text goes here'}</p>
+    <main style={{ padding: '2rem', maxWidth: '600px', margin: 'auto' }}>
+      <h1>{data?.title || 'Title goes here'}</h1>
+      {data?.heroImageUrl && <img src={data.heroImageUrl} alt="Hero" style={{ width: '100%' }} />}
+      <p>{data?.aboutText || 'About text goes here'}</p>
     </main>
   );
 }
