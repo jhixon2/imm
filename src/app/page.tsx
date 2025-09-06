@@ -17,11 +17,25 @@ export default async function Page() {
       "heroImageUrl": heroImage.asset->url
     }`
   );
-
   return (
-    <main style={{ padding: '2rem', maxWidth: '600px', margin: 'auto', textAlign: 'center', color: "#84916d", backgroundColor: "#e3ddda" }}>
-      <h1>{data?.title || 'Isabel Monika Marchand'}</h1>
-
+    <main style={{ padding: '2rem', margin: 'auto', textAlign: 'center'}}>
+      <h1>{data?.title || 'ISABEL MONIKA MARCHAND'}</h1>
+      <div
+        style={{
+          position: 'fixed',
+          top: '0',
+          left: '0',
+          width: '130%',
+          height: '110%',
+          backgroundImage: "url('/IMM_bg_sketch.png')",
+          backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: 'center',
+          opacity: '0.2',
+          zIndex: '-1',
+        }}
+      > 
+      </div>
       {data?.heroImageUrl && (
         <div style={{ position: 'relative', width: '100%', height: '400px', margin: '1rem 0' }}>
           <Image
@@ -39,17 +53,19 @@ export default async function Page() {
         <button
           style={{
             marginTop: '6rem',
-            width: '5rem',
-            height: '2rem',
-            backgroundColor: '#b08b8b',
-            color: 'white',
-            borderRadius: '0.575rem',
+            width: '6rem',
+            height: '2.5rem',
+            background: 'none',
+            padding: '0',
+            textDecoration: 'underline',
+            color: '#b08b8b',
             border: 'none',
             cursor: 'pointer',
             marginRight: '1rem',
+            fontSize: '16px',
           }}
         >
-          Shoes
+          FOOTWEAR
         </button>
       </Link>
 
@@ -57,17 +73,19 @@ export default async function Page() {
         <button
           style={{
             marginTop: '6rem',
-            width: '5rem',
-            height: '2rem',
-            backgroundColor: '#b08b8b',
-            color: 'white',
-            borderRadius: '0.575rem',
+            width: '6rem',
+            height: '2.5rem',
+            background: 'none',
+            padding: '0',
+            textDecoration: 'underline',
+            color: '#b08b8b',
             border: 'none',
             cursor: 'pointer',
             marginRight: '1rem',
+            fontSize: '16px',
           }}
         >
-          Bags
+          HANDBAGS
         </button>
       </Link>
 
@@ -75,17 +93,19 @@ export default async function Page() {
         <button
           style={{
             marginTop: '6rem',
-            width: '5rem',
-            height: '2rem',
-            backgroundColor: '#b08b8b',
-            color: 'white',
-            borderRadius: '0.575rem',
+            width: '6rem',
+            height: '2.5rem',
+            background: 'none',
+            padding: '0',
+            textDecoration: 'underline',
+            color: '#b08b8b',
             border: 'none',
             cursor: 'pointer',
             marginRight: '1rem',
+            fontSize: '16px',
           }}
         >
-          More
+          ADDITIONAL
         </button>
       </Link>
 
@@ -93,17 +113,19 @@ export default async function Page() {
         <button
           style={{
             marginTop: '6rem',
-            width: '5rem',
-            height: '2rem',
-            backgroundColor: '#b08b8b',
-            color: 'white',
-            borderRadius: '0.575rem',
+            width: '6rem',
+            height: '2.5rem',
+            background: 'none',
+            padding: '0',
+            textDecoration: 'underline',
+            color: '#b08b8b',
             border: 'none',
             cursor: 'pointer',
             marginRight: '1rem',
+            fontSize: '16px',
           }}
         >
-          About
+          ABOUT
         </button>
       </Link>
 

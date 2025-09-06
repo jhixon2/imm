@@ -10,7 +10,7 @@ export default async function MorePage() {
 
   return (
     <main style={{ padding: "2rem", maxWidth: "1000px", margin: "auto" }}>
-      <h1 style={{ textAlign: "center", marginBottom: "2rem" }}>More</h1>
+      <h1 style={{ textAlign: "center", marginBottom: "2rem" }}>ADDITIONAL</h1>
 
       <div
         style={{
@@ -25,7 +25,7 @@ export default async function MorePage() {
               src={urlFor(photo.mainImage).width(300).height(300).url()}
               alt={photo.title}
               fill
-              style={{ objectFit: "cover", borderRadius: "0.5rem" }}
+              style={{ objectFit: "cover"}}
             />
             <p style={{ textAlign: "center", marginTop: "0.5rem" }}>{photo.title}</p>
           </div>
@@ -34,17 +34,19 @@ export default async function MorePage() {
       <Link
         href="/"
         style={{
-          position: 'absolute',
-          top: '1rem',
-          left: '1rem',
-          padding: '0.5rem 1rem',
-          borderRadius: '0.25rem',
-          background: '#eee',
-          textDecoration: 'none',
-          color: '#84916d',
+            position: 'absolute',
+            top: '1.5rem',
+            left: '1rem',
+            padding: '0',
+            background: 'none',
+            textDecoration: 'none',
+            color: '#84916d',
+            border: 'none',
+            cursor: 'pointer',
+            fontSize: '16px',
         }}
       >
-        ← Back
+        ← BACK
       </Link>
     </main>
   );
