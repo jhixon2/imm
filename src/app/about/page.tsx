@@ -13,8 +13,10 @@ export default async function AboutPage() {
       mainImage{
         asset->{_id, url}
       }
-    }
-  `);
+    }`,
+    {},
+    { next: { revalidate: 0 } }
+    );
 
   return (
     <main style={{ padding: '2rem', maxWidth: '600px', margin: 'auto', textAlign: 'center' }}>

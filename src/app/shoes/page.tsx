@@ -6,7 +6,8 @@ import Link from 'next/link';
 import { Photo } from '../../types';
 
 export default async function ShoesPage() {
-  const shoes: Photo[] = await client.fetch(getCategoryItems("shoes"));
+  const shoes: Photo[] = await client.fetch(getCategoryItems("shoes"), {}, { next: { revalidate: 0 } });
+
 
   return (
     <main style={{ padding: "2rem", maxWidth: "1000px", margin: "auto" }}>

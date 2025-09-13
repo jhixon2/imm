@@ -6,7 +6,9 @@ import Link from 'next/link';
 import { Photo } from '../../types';
 
 export default async function BagsPage() {
-  const bags: Photo[] = await client.fetch(getCategoryItems("bags"));
+  const bags: Photo[] = await client.fetch(getCategoryItems("bags"), {}, { next: { revalidate: 0 } });
+
+  
 
   return (
     <main style={{ padding: "2rem", maxWidth: "1000px", margin: "auto" }}>

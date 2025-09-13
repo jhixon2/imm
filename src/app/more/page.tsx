@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { Photo } from '../../types';
 
 export default async function MorePage() {
-  const more: Photo[] = await client.fetch(getMultiCategoryItems(["clothing", "other", "sketches"]));
+  const more: Photo[] = await client.fetch(getMultiCategoryItems(["clothing", "other", "sketches"]), {}, { next: { revalidate: 0 } });
 
   return (
     <main style={{ padding: "2rem", maxWidth: "1000px", margin: "auto" }}>

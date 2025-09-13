@@ -15,7 +15,9 @@ export default async function Page() {
       title,
       aboutText,
       "heroImageUrl": heroImage.asset->url
-    }`
+    }`,
+    {},
+    { next: { revalidate: 0 } }
   );
   return (
     <main style={{ padding: '2rem', margin: 'auto', textAlign: 'center'}}>
