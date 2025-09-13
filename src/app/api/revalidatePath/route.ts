@@ -12,7 +12,11 @@ export async function POST(req: NextRequest) {
     const pathsToRevalidate = ["/", "/shoes", "/bags", "/more", "/about"];
 
     for (const path of pathsToRevalidate) {
-      await fetch(`${req.nextUrl.origin}/api/revalidatePath?path=${path}`);
+      await fetch(`${req.nextUrl.origin}/api/revalidatePath?path=${path}`, {
+        method: "GET",
+        cache: "no-store",
+      });
+
     }
 
     return new Response(
