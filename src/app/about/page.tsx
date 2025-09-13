@@ -20,14 +20,19 @@ export default async function AboutPage() {
     <main style={{ padding: '2rem', maxWidth: '600px', margin: 'auto', textAlign: 'center' }}>
       <h1>ABOUT</h1>
       {profilePhoto?.mainImage?.asset?.url && (
-        <div style={{ position: 'relative', width: '100%', paddingTop: '100%', marginTop: '1rem' }}>
-          <Image
-            src={urlFor(profilePhoto.mainImage).width(600).height(600).url()}
+        <Image
+            src={urlFor(profilePhoto.mainImage).url()}
             alt={profilePhoto.title}
-            fill
-            style={{ objectFit: 'cover' }}
+            width={1536}
+            height={2047}
+            style={{
+                display: 'block',
+                margin: '1rem auto',
+                width: '100%',
+                height: 'auto',
+                maxWidth: '400px',
+            }}
           />
-        </div>
       )}
       {profilePhoto?.title && <p style={{ marginTop: '1rem' }}>{profilePhoto.title}</p>}
       <Link

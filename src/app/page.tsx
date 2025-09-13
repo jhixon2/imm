@@ -31,7 +31,7 @@ export default async function Page() {
           backgroundSize: 'cover',
           backgroundRepeat: 'no-repeat',
           backgroundPosition: 'center',
-          opacity: '0.2',
+          opacity: '0.3',
           zIndex: '-1',
         }}
       > 
