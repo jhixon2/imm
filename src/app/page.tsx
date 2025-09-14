@@ -35,7 +35,6 @@ const externalButtonStyle = {
   border: "none",
   cursor: "pointer",
   fontSize: "16px",
-  textAlign: "center",
   display: "flex",
   gap: "5px",
   textDecoration: "underline",
