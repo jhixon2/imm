@@ -1,7 +1,12 @@
 import { client } from '../../lib/sanity';
 import { urlFor } from '../../lib/sanity.image';
 import Image from 'next/image';
+import { getCategoryItems } from "../../lib/queries";
 import Link from 'next/link';
+import { FaInstagram } from "react-icons/fa";
+import { FaLinkedin } from "react-icons/fa";
+import WhiteBGShoes from '../components/whiteBGShoes';
+
 
 type HomepageData = {
   title?: string;
@@ -9,7 +14,36 @@ type HomepageData = {
   heroImageUrl?: string;
 };
 
+const pageButtonStyle = {
+  width: "10rem",
+  height: "2.5rem",
+  background: "none",
+  padding: "0",
+  textDecoration: "underline",
+  color: "#b08b8b",
+  border: "none",
+  cursor: "pointer",
+  fontSize: "24px",
+};
+
+const externalButtonStyle = {
+  width: "10rem",
+  height: "2.5rem",
+  background: "none",
+  padding: "0",
+  color: "#b08b8b",
+  border: "none",
+  cursor: "pointer",
+  fontSize: "16px",
+  textAlign: "center",
+  display: "flex",
+  gap: "5px",
+  textDecoration: "underline",
+  alignItems: "center",
+};
+
 export default async function Page() {
+  client.fetch('*[_type == "photo"][0]{_id, title}').then(console.log).catch(console.error);
   const data = await client.fetch<HomepageData>(
     `*[_type == "homepage"][0]{
       title,
@@ -49,87 +83,53 @@ export default async function Page() {
         </div>
       )}
 
-      <p>{data?.aboutText || 'homepage text'}</p>
+      <p>{data?.aboutText || ''}</p>
 
-      <Link href="/shoes">
-        <button
-          style={{
-            marginTop: '6rem',
-            width: '6rem',
-            height: '2.5rem',
-            background: 'none',
-            padding: '0',
-            textDecoration: 'underline',
-            color: '#b08b8b',
-            border: 'none',
-            cursor: 'pointer',
-            marginRight: '1rem',
-            fontSize: '16px',
-          }}
-        >
-          FOOTWEAR
-        </button>
-      </Link>
+      {/* Buttons linking to other pages */}
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center", 
+          gap: "6rem",
+          marginTop: "6rem",
+        }}
+      >
+        <Link href="/shoes">
+          <button style={pageButtonStyle}>FOOTWEAR</button>
+        </Link>
+        <Link href="/bags">
+          <button style={pageButtonStyle}>HANDBAGS</button>
+        </Link>
+        <Link href="/more">
+          <button style={pageButtonStyle}>ADDITIONAL</button>
+        </Link>
+        <Link href="/about">
+          <button style={pageButtonStyle}>ABOUT</button>
+        </Link>
+      </div>
 
-      <Link href="/bags">
-        <button
-          style={{
-            marginTop: '6rem',
-            width: '6rem',
-            height: '2.5rem',
-            background: 'none',
-            padding: '0',
-            textDecoration: 'underline',
-            color: '#b08b8b',
-            border: 'none',
-            cursor: 'pointer',
-            marginRight: '1rem',
-            fontSize: '16px',
-          }}
-        >
-          HANDBAGS
-        </button>
-      </Link>
+      {/* Shoes with white background */}
+      <WhiteBGShoes />
 
-      <Link href="/more">
-        <button
-          style={{
-            marginTop: '6rem',
-            width: '6rem',
-            height: '2.5rem',
-            background: 'none',
-            padding: '0',
-            textDecoration: 'underline',
-            color: '#b08b8b',
-            border: 'none',
-            cursor: 'pointer',
-            marginRight: '1rem',
-            fontSize: '16px',
-          }}
-        >
-          ADDITIONAL
-        </button>
-      </Link>
-
-      <Link href="/about">
-        <button
-          style={{
-            marginTop: '6rem',
-            width: '6rem',
-            height: '2.5rem',
-            background: 'none',
-            padding: '0',
-            textDecoration: 'underline',
-            color: '#b08b8b',
-            border: 'none',
-            cursor: 'pointer',
-            marginRight: '1rem',
-            fontSize: '16px',
-          }}
-        >
-          ABOUT
-        </button>
-      </Link>
+      {/* Buttons linking to external pages at bottom */}
+      <div
+        style={{
+          position: "fixed",
+          bottom: "1rem",
+          left: 0,
+          right: 0,
+          display: "flex",
+          justifyContent: "center",
+          gap: "1rem",
+        }}
+      >
+        <Link href="https://www.instagram.com/isabelmonikamarchand">
+          <button style={externalButtonStyle}><FaInstagram size={28} /> INSTAGRAM</button>
+        </Link>
+        <Link href="https://www.linkedin.com/in/isabel-marchand-45b885271">
+          <button style={externalButtonStyle}><FaLinkedin size={28} />  LINKEDIN</button>
+        </Link>
+      </div>
 
     </main>
   );

@@ -23,9 +23,10 @@ export default async function ShoesPage() {
         {shoes.map((photo) => (
           <div key={photo._id} style={{ cursor: "pointer", position: "relative", height: "300px"}}>
             <Image
-              src={urlFor(photo.mainImage).width(300).height(300).url()}
+              src={urlFor(photo.mainImage).url()}
               alt={photo.title}
               fill
+              sizes="(max-width: 768px) 100vw, 25vw"
               style={{ objectFit: "cover" }}
             />
             <p style={{ textAlign: "center", marginTop: "0.5rem" }}>{photo.title}</p>

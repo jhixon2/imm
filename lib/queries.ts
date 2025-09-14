@@ -29,6 +29,26 @@ export const getCategoryItems = (category: string) => `
 
 
 /*
+Shoes with White Background
+
+const catQuery = getShoesWhiteBG();
+returns array of mainImages of each shoe with a white background
+*/
+export const getShoesWhiteBG = () => `
+  *[_type == "photo" && hide == false && category == "shoes" && whiteBG == true]{
+    _id,
+    title,
+    mainImage{
+      asset->{
+        _id,
+        url
+      }
+    }
+  }
+`;
+
+
+/*
 Non-hidden items from multiple categories
 
 const catQuery = getMultiCategoryItems("cat");
