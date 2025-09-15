@@ -1,4 +1,10 @@
 import './globals.css';
+import { EB_Garamond } from "next/font/google";
+
+const ebGaramond = EB_Garamond({
+  subsets: ["latin"],
+  display: "swap",
+});
 
 export const metadata = {
   title: 'Isabel Monika Marchand',
@@ -12,7 +18,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className={ebGaramond.className}>
+        {children}
+      </body>
     </html>
   );
 }

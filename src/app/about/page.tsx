@@ -62,17 +62,21 @@ export default async function AboutPage() {
                 }}
             />
         )}
-        {profilePhoto?.description && (
-            <p style={{ maxWidth: "1536px", textAlign: "left", whiteSpace: "pre-line", fontSize: "20px", lineHeight: "32px"}}>
-            {profilePhoto.description}
-            <Link href="https://www.instagram.com/isabelmonikamarchand">
-            <button style={externalButtonStyle}><FaInstagram size={28} /> INSTAGRAM</button>
-            </Link>
-            <Link href="https://www.linkedin.com/in/isabel-marchand-45b885271">
-            <button style={externalButtonStyle}><FaLinkedin size={28} />  LINKEDIN</button>
-            </Link>
-            </p>
-        )}
+        <div>
+            {profilePhoto?.description && (
+                <p style={{ maxWidth: "1536px", textAlign: "left", whiteSpace: "pre-line", fontSize: "20px", lineHeight: "32px", marginBottom: "32px"}}>
+                {profilePhoto.description}
+                </p>
+            )}
+            <div>
+                <Link href="https://www.instagram.com/isabelmonikamarchand">
+                <button style={externalButtonStyle}><FaInstagram size={28} /> INSTAGRAM</button>
+                </Link>
+                <Link href="https://www.linkedin.com/in/isabel-marchand-45b885271">
+                <button style={externalButtonStyle}><FaLinkedin size={28} />  LINKEDIN</button>
+                </Link>
+            </div>
+        </div>
       </div>
       <Link
         href="/"
