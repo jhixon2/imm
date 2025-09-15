@@ -53,46 +53,41 @@ export default async function Page() {
     { next: { revalidate: 0 } }
   );
   return (
+    <>
+    <div className="bg-image-container"
+    style={{
+      position: 'fixed',
+      top: '0',
+      left: '0',
+      width: '130%',
+      height: '110%',
+      backgroundImage: "url('/IMM_bg_sketch.png')",
+      backgroundSize: 'cover',
+      backgroundRepeat: 'no-repeat',
+      backgroundPosition: 'center',
+      opacity: '0.3',
+      zIndex: '-1',
+    }}
+  > 
+  </div>
+  {data?.heroImageUrl && (
+    <div className="bg-image">
+      <Image
+        src={data.heroImageUrl}
+        alt="Hero"
+        fill
+        style={{ objectFit: 'cover' }}
+        priority
+      />
+    </div>
+  )}
     <main style={{ padding: '2rem', margin: 'auto', textAlign: 'center'}}>
       <h1>{data?.title || 'ISABEL MONIKA MARCHAND'}</h1>
-      <div
-        style={{
-          position: 'fixed',
-          top: '0',
-          left: '0',
-          width: '130%',
-          height: '110%',
-          backgroundImage: "url('/IMM_bg_sketch.png')",
-          backgroundSize: 'cover',
-          backgroundRepeat: 'no-repeat',
-          backgroundPosition: 'center',
-          opacity: '0.3',
-          zIndex: '-1',
-        }}
-      > 
-      </div>
-      {data?.heroImageUrl && (
-        <div style={{ position: 'relative', width: '100%', height: '400px', margin: '1rem 0' }}>
-          <Image
-            src={data.heroImageUrl}
-            alt="Hero"
-            fill
-            style={{ objectFit: 'cover', borderRadius: '0.5rem' }}
-          />
-        </div>
-      )}
 
       <p>{data?.aboutText || ''}</p>
 
       {/* Buttons linking to other pages */}
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center", 
-          gap: "6rem",
-          marginTop: "6rem",
-        }}
-      >
+      <div className="home-buttons" style={{marginTop: "2rem"}}>
         <Link href="/shoes">
           <button style={pageButtonStyle}>FOOTWEAR</button>
         </Link>
@@ -111,16 +106,7 @@ export default async function Page() {
       <WhiteBGShoes />
 
       {/* Buttons linking to external pages at bottom */}
-      <div
-        style={{
-          position: "fixed",
-          bottom: "1rem",
-          left: 0,
-          right: 0,
-          display: "flex",
-          justifyContent: "center",
-          gap: "1rem",
-        }}
+      <div className="external-buttons"
       >
         <Link href="https://www.instagram.com/isabelmonikamarchand">
           <button style={externalButtonStyle}><FaInstagram size={28} /> INSTAGRAM</button>
@@ -131,5 +117,6 @@ export default async function Page() {
       </div>
 
     </main>
+  </>
   );
 }

@@ -20,6 +20,7 @@ const externalButtonStyle = {
     gap: "5px",
     textDecoration: "underline",
     alignItems: "center",
+    color: "black",
   };
 
 export default async function AboutPage() {
@@ -39,12 +40,11 @@ export default async function AboutPage() {
   return (
     <main style={{ padding: '2rem', maxWidth: '1000px', margin: 'auto', textAlign: 'center' }}>
       <h1>ABOUT</h1>
-      <div
+      <div className="about-container"
         style={{
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            gap: "5rem",
             margin: "1rem auto",
           }}>
         {profilePhoto?.mainImage?.asset?.url && (

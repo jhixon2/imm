@@ -17,36 +17,51 @@ export default function WhiteBGShoes() {
     }, []);
     
     return (
-      <div
+      <div className="white-bg-shoes-row"
         style={{
           display: "flex",
+          flexWrap: "wrap",
           justifyContent: "center",
+          alignItems: "flex-start",
           gap: "1rem",
           padding: "2rem",
-          marginTop: "4rem",
-          alignItems: "flex-start",
-          height: "400px",
+          height: "auto",
+          margin: "0 auto"
         }}
       >
       {shoes.map((photo) => {
-        const randomOffset = Math.floor(Math.random() * 100);
+        const isMobile = typeof window !== "undefined" && window.innerWidth <= 768;
+        const randomOffset = isMobile ? 0 : Math.floor(Math.random() * 100);
         return (
             <div
             key={photo._id}
             style={{
-                flex: "1 1 0",
-                maxWidth: "200px",
-                height: "200px",
-                position: "relative",
+                display: "flex",
+                flex: isMobile ? "0 0 100%" : "1 1 100px",
+                maxWidth: isMobile ? "100%" : `${100 / shoes.length - 2}%`,
+                height: isMobile ? "auto" : "200px",
                 transform: `translateY(${randomOffset}px)`,
+                marginTop: isMobile ? "0rem" : "4rem",
+                justifyContent: "center",
+                alignItems: "center",
             }}
             >
-            <Image
+            {isMobile ? (
+                <Image
+                src={urlFor(photo.mainImage).url()}
+                alt={photo.title}
+                width={200}
+                height={200}
+                style={{ objectFit: "cover", maxHeight: "150px"}}
+                />
+            ) : (
+                <Image
                 src={urlFor(photo.mainImage).url()}
                 alt={photo.title}
                 fill
                 style={{ objectFit: "cover" }}
-            />
+                />
+            )}
             </div>
         );
         })}
