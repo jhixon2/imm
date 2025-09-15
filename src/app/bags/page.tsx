@@ -7,7 +7,7 @@ import Image from "next/image";
 import Link from 'next/link';
 import { Photo } from '../../types';
 import { useState, useEffect} from "react";
-import Lightbox from "../../components/Lightbox";
+import Lightbox from "../../components/lightbox";
 
   export default function BagsPage() {
     const [bags, setBags] = useState<Photo[]>([]);
