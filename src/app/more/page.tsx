@@ -1,12 +1,24 @@
+"use client";
+
 import { client } from "../../../lib/sanity";
 import { urlFor } from "../../../lib/sanity.image";
 import { getMultiCategoryItems } from "../../../lib/queries";
 import Image from "next/image";
 import Link from 'next/link';
 import { Photo } from '../../types';
+import { useState, useEffect} from "react";
+import Lightbox from "../../components/Lightbox";
 
-export default async function MorePage() {
-  const more: Photo[] = await client.fetch(getMultiCategoryItems(["clothing", "other", "sketches"]), {}, { next: { revalidate: 0 } });
+export default function MorePage() {
+  const [more, setMore] = useState<Photo[]>([]);
+  const [selectedMore, setSelectedMore] = useState<Photo | null>(null);
+
+  useEffect(() => {
+    fetch('/api/sanity?multi=clothing%2Cother%2Csketches')
+    .then((res) => res.json())
+    .then(setMore)
+    .catch(console.error);
+  }, []);
 
   return (
     <main style={{ padding: "2rem", maxWidth: "1000px", margin: "auto" }}>
@@ -20,7 +32,9 @@ export default async function MorePage() {
         }}
       >
         {more.map((photo) => (
-          <div key={photo._id} style={{ cursor: "pointer", position: "relative", height: "300px"}}>
+            <div key={photo._id} style={{ cursor: "pointer", position: "relative", height: "300px"}}
+                onClick={() => setSelectedMore(photo)}
+            >  
             <Image
               src={urlFor(photo.mainImage).url()}
               alt={photo.title}
@@ -32,6 +46,9 @@ export default async function MorePage() {
           </div>
         ))}
       </div>
+
+      {selectedMore && <Lightbox item={selectedMore} onClose={() => setSelectedMore(null)} />}
+
       <Link
         href="/"
         style={{

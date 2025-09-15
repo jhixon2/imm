@@ -1,15 +1,25 @@
+"use client";
+
 import { client } from "../../../lib/sanity";
 import { urlFor } from "../../../lib/sanity.image";
 import { getCategoryItems } from "../../../lib/queries";
 import Image from "next/image";
 import Link from 'next/link';
 import { Photo } from '../../types';
+import { useState, useEffect} from "react";
+import Lightbox from "../../components/Lightbox";
 
-export default async function BagsPage() {
-  const bags: Photo[] = await client.fetch(getCategoryItems("bags"), {}, { next: { revalidate: 0 } });
+  export default function BagsPage() {
+    const [bags, setBags] = useState<Photo[]>([]);
+    const [selectedBag, setSelectedBag] = useState<Photo | null>(null);
 
+  useEffect(() => {
+    fetch(`/api/sanity?category=bags`)
+        .then((res) => res.json())
+        .then(setBags)
+        .catch(console.error);
+    }, []);    
   
-
   return (
     <main style={{ padding: "2rem", maxWidth: "1000px", margin: "auto" }}>
       <h1 style={{ textAlign: "center", marginBottom: "2rem" }}>HANDBAGS</h1>
@@ -22,7 +32,9 @@ export default async function BagsPage() {
         }}
       >
         {bags.map((photo) => (
-          <div key={photo._id} style={{ cursor: "pointer", position: "relative", height: "300px"}}>
+          <div key={photo._id} style={{ cursor: "pointer", position: "relative", height: "300px"}}
+            onClick={() => setSelectedBag(photo)}
+          >
             <Image
               src={urlFor(photo.mainImage).url()}
               alt={photo.title}
@@ -34,6 +46,9 @@ export default async function BagsPage() {
           </div>
         ))}
       </div>
+
+      {selectedBag && <Lightbox item={selectedBag} onClose={() => setSelectedBag(null)} />}
+
       <Link
         href="/"
         style={{
