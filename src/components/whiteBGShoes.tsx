@@ -10,7 +10,7 @@ export default function WhiteBGShoes() {
     const [shoes, setShoes] = useState<Photo[]>([]);
   
     useEffect(() => {
-      fetch(`/api/sanity?type=whiteBG&category=shoes`)
+      fetch(`/api/sanity?category=whiteBGShoes`)
         .then((res) => res.json())
         .then(setShoes)
         .catch(console.error);

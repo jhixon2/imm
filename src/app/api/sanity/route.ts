@@ -5,24 +5,43 @@ import { getCategoryItems, getShoesWhiteBG, getMultiCategoryItems } from "../../
 export async function GET(req: NextRequest) {
   const category = req.nextUrl.searchParams.get("category");
   const type = req.nextUrl.searchParams.get("type");
-  const multi = req.nextUrl.searchParams.get("multi");
 
   let query = "";
+  let data;
 
   try {
     if (type === "whiteBG" && category === "shoes") {
       query = getShoesWhiteBG();
-    } else if (multi) {
-      const categories = multi.split(",").map((c: string) => c.trim());
-      query = getMultiCategoryItems(categories);
+      data = await client.fetch(query);
     } else if (category) {
-      query = getCategoryItems(category);
+        const collectionQuery = `*[_type == "photoCollectionType" && title match $category][0]{
+            items[]->{
+            _id,
+            title,
+            description,
+            category,
+            mainImage,
+            images,
+            hide,
+            whiteBG
+            }
+        }`;
+        const collection = await client.fetch(collectionQuery, { category });
+        console.log("Fetched collection items in order:", collection.items.map(i => i.title));
+        if (collection?.items?.length) {
+            data = collection.items;
+        }
+        else if (category === "other") {
+            // in case it breaks just get from photos like before w/o ordering (multicategories)
+            data = await client.fetch(getMultiCategoryItems(["sketches", "clothing", "other"]));
+        } else {
+            // same as above but when just one category
+            data = await client.fetch(getCategoryItems(category));
+        }
     } else {
       return NextResponse.json({ error: "No valid query parameters" }, { status: 400 });
     }
-
-    const data = await client.fetch(query);
-    return NextResponse.json(data);
+  return NextResponse.json(data);
   } catch (err) {
     console.error(err);
     return NextResponse.json({ error: "Failed to fetch data" }, { status: 500 });

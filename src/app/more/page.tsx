@@ -14,7 +14,7 @@ export default function MorePage() {
   const [selectedMore, setSelectedMore] = useState<Photo | null>(null);
 
   useEffect(() => {
-    fetch('/api/sanity?multi=clothing%2Cother%2Csketches')
+    fetch('/api/sanity?category=other')
     .then((res) => res.json())
     .then(setMore)
     .catch(console.error);
