@@ -27,7 +27,6 @@ export async function GET(req: NextRequest) {
             }
         }`;
         const collection = await client.fetch(collectionQuery, { category });
-        console.log("Fetched collection items in order:", collection.items.map(i => i.title));
         if (collection?.items?.length) {
             data = collection.items;
         }
