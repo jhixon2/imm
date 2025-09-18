@@ -20,8 +20,18 @@ export async function GET(req: NextRequest) {
             title,
             description,
             category,
-            mainImage,
-            images,
+            mainImage{
+                asset->{
+                  _id,
+                  url
+                }
+              },
+            images[]{
+                  asset->{
+                    _id,
+                    url
+                  }
+              },
             hide,
             whiteBG
             }
