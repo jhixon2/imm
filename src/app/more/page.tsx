@@ -8,6 +8,23 @@ import Link from 'next/link';
 import { Photo } from '../../types';
 import { useState, useEffect} from "react";
 import Lightbox from "../../components/lightbox";
+import { FaInstagram } from "react-icons/fa";
+import { FaLinkedin } from "react-icons/fa";
+
+const externalButtonStyle = {
+    width: "10rem",
+    height: "2.5rem",
+    background: "none",
+    padding: "0",
+    color: "#b08b8b",
+    border: "none",
+    cursor: "pointer",
+    fontSize: "16px",
+    display: "flex",
+    gap: "5px",
+    textDecoration: "underline",
+    alignItems: "center",
+  };
 
 export default function MorePage() {
   const [more, setMore] = useState<Photo[]>([]);
@@ -23,31 +40,47 @@ export default function MorePage() {
   return (
     <main style={{ padding: "2rem", maxWidth: "1000px", margin: "auto" }}>
       <h1 style={{ textAlign: "center", marginBottom: "2rem" }}>ADDITIONAL</h1>
-
-      <div
+    <div
         style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-          gap: "1rem",
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+        gap: "1rem",
         }}
-      >
+    >
         {more.map((photo) => (
             <div key={photo._id} style={{ cursor: "pointer", position: "relative", height: "300px"}}
                 onClick={() => setSelectedMore(photo)}
             >  
             <Image
-              src={urlFor(photo.mainImage).url()}
-              alt={photo.title}
-              fill
-              sizes="(max-width: 768px) 100vw, 25vw"
-              style={{ objectFit: "cover"}}
+            src={urlFor(photo.mainImage).url()}
+            alt={photo.title}
+            fill
+            sizes="(max-width: 768px) 100vw, 25vw"
+            style={{ objectFit: "cover"}}
             />
-            <p style={{ textAlign: "center", marginTop: "0.5rem" }}>{photo.title}</p>
-          </div>
+            <p style={{ textAlign: "center", marginTop: "0.5rem"}}>{photo.title}</p>
+        </div>
         ))}
-      </div>
+    </div>
 
-      {selectedMore && <Lightbox item={selectedMore} onClose={() => setSelectedMore(null)} />}
+    {selectedMore && <Lightbox item={selectedMore} onClose={() => setSelectedMore(null)} />}
+
+    <div className="external-buttons"
+        style={{
+        display: "flex",
+        justifyContent: "center",
+        gap: "2rem",
+        flexDirection: "column",
+        marginLeft: "1rem",
+        }}
+    >
+        <Link href="https://www.instagram.com/isabelmonikamarchand">
+        <button style={externalButtonStyle}><FaInstagram size={28} /> INSTAGRAM</button>
+        </Link>
+        <Link href="https://www.linkedin.com/in/isabel-marchand-45b885271">
+        <button style={externalButtonStyle}><FaLinkedin size={28} />  LINKEDIN</button>
+        </Link>
+    </div>
 
       <Link
         href="/"
@@ -66,6 +99,7 @@ export default function MorePage() {
       >
         ← BACK
       </Link>
+
     </main>
   );
 }

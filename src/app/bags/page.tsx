@@ -8,6 +8,23 @@ import Link from 'next/link';
 import { Photo } from '../../types';
 import { useState, useEffect} from "react";
 import Lightbox from "../../components/lightbox";
+import { FaInstagram } from "react-icons/fa";
+import { FaLinkedin } from "react-icons/fa";
+
+const externalButtonStyle = {
+    width: "10rem",
+    height: "2.5rem",
+    background: "none",
+    padding: "0",
+    color: "#b08b8b",
+    border: "none",
+    cursor: "pointer",
+    fontSize: "16px",
+    display: "flex",
+    gap: "5px",
+    textDecoration: "underline",
+    alignItems: "center",
+  };
 
   export default function BagsPage() {
     const [bags, setBags] = useState<Photo[]>([]);
@@ -48,6 +65,23 @@ import Lightbox from "../../components/lightbox";
       </div>
 
       {selectedBag && <Lightbox item={selectedBag} onClose={() => setSelectedBag(null)} />}
+
+      <div className="external-buttons"
+        style={{
+                display: "flex",
+                justifyContent: "center",
+                gap: "2rem",
+                flexDirection: "column",
+                marginLeft: "1rem",
+              }}
+      >
+        <Link href="https://www.instagram.com/isabelmonikamarchand">
+          <button style={externalButtonStyle}><FaInstagram size={28} /> INSTAGRAM</button>
+        </Link>
+        <Link href="https://www.linkedin.com/in/isabel-marchand-45b885271">
+          <button style={externalButtonStyle}><FaLinkedin size={28} />  LINKEDIN</button>
+        </Link>
+      </div>
 
       <Link
         href="/"
